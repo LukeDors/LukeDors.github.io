@@ -1,4 +1,11 @@
 .flex-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+h1 {
+  text-align: center;
 }
