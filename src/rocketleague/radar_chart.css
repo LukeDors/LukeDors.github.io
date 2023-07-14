@@ -1,0 +1,18 @@
+#container {
+  display: flex;
+  justify-content: center;
+}
+
+select {
+  width: 150px
+}
+
+p {
+  margin: 20px
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

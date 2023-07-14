@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+  <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="radar_chart.css">
+</head>
+<body>
+  <div id="wrapper">
+    <h1>
+      Rocket League Individual Statistics 2021-2022
+    </h1>
+    <div id="container">
+      <select id="corner0"></select>
+      <p>Corner 1:</p>
+      <select class="corner" id="corner1"></select>
+      <p>Corner 2:</p>
+      <select class="corner" id="corner2"></select>
+      <p>Corner 3:</p>
+      <select class="corner" id="corner3"></select>
+      <p>Corner 4:</p>
+      <select class="corner" id="corner4"></select>
+      <p>Corner 5:</p>
+      <select class="corner" id="corner5"></select>
+      <p>Corner 6:</p>
+      <select class="corner" id="corner6"></select>
+    </div>
+    <div id="viz"></div>
+  </div>
+  <script>
+    d3.csv("player_performances_final.csv").then (function(incomingData) {
+      var radius = 300
+      keep = ['shooting_percentage', 'percent_zero_boost' , 'percent_full_boost', 'percent_boost_0_25', 'percent_boost_25_50', 'percent_boost_50_75', 'percent_boost_75_100', 'avg_speed_percentage', 'percent_slow_speed', 'percent_boost_speed', 'percent_supersonic_speed', 'percent_ground', 'percent_low_air', 'percent_high_air', 'percent_defensive_third', 'percent_offensive_third', 'percent_neutral_third', 'percent_defensive_half', 'percent_offensive_half', 'percent_behind_ball', 'percent_infront_ball', 'percent_most_back', 'percent_most_forward', 'percent_closest_to_ball', 'percent_farthest_from_ball', 'goal_participation']
+      var sliced = incomingData.map(row => ['type', ...keep].reduce((acc, v) => ({ ...acc, [v]: row[v] }), {}))
+      var tag = incomingData.map(d => d.tag)
+      var team = incomingData.map(d => d.team_name)
+      var currentPlayer = "2Piece"
+      var currentTeam = "RANDOMS"
+
+      for (let i=0; i < tag.length; i++) {
+        tag[i] = tag[i] + ", (" + team[i] + ")"
+      }
+
+      var svg = d3.select("#viz").append("svg")
+        .attr("width", 600)
+        .attr("height", 600);
+
+      var pathLine = d3.line()
+        .x(function(d) {
+          return d.x;
+        })
+        .y(function(d) {
+          return d.y;
+        })
+
+      function hex(x, y, r, svg) {
+        svg.append('line')
+          .style('stroke', 'black')
+          .style('stroke-width', 1)
+          .attr('x1', x - r)
+          .attr('y1', y)
+          .attr('x2', x + r)
+          .attr('y2', y)
+
+        svg.append('line')
+          .style('stroke', 'black')
+          .style('stroke-width', 1)
+          .attr('x1', x - r)
+          .attr('y1', y)
+          .attr('x2', x + r)
+          .attr('y2', y)
+          .attr("transform", `rotate(120 ${x} ${y})`)
+
+        svg.append('line')
+          .style('stroke', 'black')
+          .style('stroke-width', 1)
+          .attr('x1', x - r)
+          .attr('y1', y)
+          .attr('x2', x + r)
+          .attr('y2', y)
+          .attr('transform', `rotate(60 ${x} ${y})`)
+
+        var pathInfo = [{
+          x: x + r,
+          y: y
+        }, {
+          x: (r / 2) + x,
+          y: (r / 2) * Math.sqrt(3) + y
+        }, {
+          x: -r / 2 + x,
+          y: (r / 2) * Math.sqrt(3) + y
+        }, {
+          x: x - r,
+          y: y
+        }, {
+          x: -r / 2 + x,
+          y: -(r / 2) * Math.sqrt(3) + y
+        }, {
+          x: r / 2 + x,
+          y: -(r / 2) * Math.sqrt(3) + y
+        }, {
+          x: x + r,
+          y: y
+        }]
+
+        svg.append("path")
+          .attr("d", pathLine(pathInfo))
+          .attr("stroke", "black")
+          .attr("stroke-width", 1)
+          .attr("fill", "none")
+      }
+      hex(radius, radius, radius, svg)
+      hex(radius, radius, radius * 0.8, svg)
+      hex(radius, radius, radius * 0.6, svg)
+      hex(radius, radius, radius * 0.4, svg)
+      hex(radius, radius, radius * 0.2, svg)
+      var radialScale = d3.scaleLinear()
+        .domain([0,10])
+        .range([0,250]);
+      var ticks = [2,4,6,8,10]
+      ticks.forEach(t =>
+        svg.append("text")
+          .attr("x", 300)
+          .attr("y", 288 - radialScale(t))
+          .text(t.toString() + "0%")
+      )
+
+      // displayData(radius, data, svg)
+      // console.log(incomingData.filter(function(d) {
+      //   if(d["tag"]=="2Piece" && d["team_name"]=="RANDOMS") {
+      //     return d;
+      //   }
+      // }))
+
+      function displayData(r, data, svg) {
+        console.log(2)
+        svg.append("path")
+          .datum(data)
+          .attr("id", "data")
+          .transition()
+          .duration(1000)
+          .attr("d",pathLine(data))
+          .attr("stroke-width", 3)
+          .attr("stroke", "blue")
+          .attr("fill", "blue")
+          .attr("stroke-opacity", 1)
+          .attr("opacity", 0.5)
+      }
+
+      d3.select("#corner0").on("change", function(d) {
+        var selectedPlayer = d3.select(this).property("value")
+        d3.select("#data").remove()
+        currentPlayer = selectedPlayer
+        displayData(radius, updatePlayerData(selectedPlayer), svg)
+      })
+      .selectAll('myOptions')
+        .data(tag)
+      .enter()
+        .append('option')
+      .text(function (d) {return d;})
+        .attr("value", function (d) {return d;})
+
+      d3.selectAll(".corner").on("change", function(d) {
+        var selectedField = d3.select(this).property("value")
+        var filtered = incomingData.filter(function(d) {
+          if(d.tag == currentPlayer) {
+            return d}
+        })
+        filtered = Number(filtered.map(d =>d[selectedField])[0])
+        if (filtered > 1) {
+          filtered = filtered / 100
+        }
+        data = updateData(selectedField, filtered, this.id, svg)
+        // displayData(radius, updateData(selectedField, filtered, this.id, svg), svg)
+        displayData(radius, updatePlayerData(currentPlayer), svg)
+      })
+      .selectAll('myOptions')
+        .data(keep)
+      .enter()
+        .append('option')
+      .text(function (d) {return d;})
+        .attr("value", function (d) {return d;})
+
+
+      function updateData(field, data, id, svg) {
+        d3.select("#data").remove()
+        console.log(1)
+        if (id == "corner1") {
+          data[0] = {x: radius + data * radius, y: radius}
+          data[6] = {x: radius + data * radius, y: radius}
+        } else if (id == "corner2") {
+          data[1] = {x: (data * radius / 2) + radius, y: (data * radius / 2) * Math.sqrt(3) + radius}
+        } else if (id == "corner3") {
+          data[2] = {x: -data * radius / 2 + radius, y: (data * radius / 2) * Math.sqrt(3) + radius}
+        } else if (id == "corner4") {
+          data[3] = {x: radius - data * radius, y: radius}
+        } else if (id == "corner5") {
+          data[4] = {x: -data * radius / 2 + radius, y: -(data * radius / 2) * Math.sqrt(3) + radius}
+        } else if (id == "corner6") {
+          data[5] = {x: data * radius / 2 + radius, y: -(data * radius / 2) * Math.sqrt(3) + radius}
+        }
+        return data
+      }
+
+      function updatePlayerData(value) {
+        var i = value.indexOf(" ");
+        var player = value.slice(0, i).trim().replace(",", "")
+        var team = value.slice(i + 1, value.length).trim().replace("(", "").replace(")", "")
+        corners = document.querySelectorAll(".corner")
+        values = []
+        for (let i = 0; i < corners.length; i++) {
+          values[i] = corners[i].value
+        }
+        var playerData = incomingData.filter(function(d) {
+          if(d["team_name"]==team && d["tag"]==player) {
+            return d;
+          }
+        })
+        for (let i = 0; i < values.length; i++) {
+          values[i] = Number(playerData.map(d => d[values[i]]))
+          if (values[i] > 1) {
+            values[i] = values[i] / 100
+          }
+        }
+        data = [{
+          x: 300 + values[0] * 300,
+          y: 300
+        }, {
+          x: (values[1] * 300 / 2) + 300,
+          y: (values[1] * 300 / 2) * Math.sqrt(3) + 300
+        }, {
+          x: -values[2] * 300 / 2 + 300,
+          y: (values[2] * 300 / 2) * Math.sqrt(3) + 300
+        }, {
+          x: 300 - values[3] * 300,
+          y: 300
+        }, {
+          x: -values[4] * 300 / 2 + 300,
+          y: -(values[4] * 300 / 2) * Math.sqrt(3) + 300
+        }, {
+          x: values[5] * 300 / 2 + 300,
+          y: -(values[5] * 300 / 2) * Math.sqrt(3) + 300
+        }, {
+          x: 300 + values[0] * 300,
+          y: 300
+        }]
+        return data
+      }
+      displayData(radius, updatePlayerData("2Piece, RANDOMS"), svg)
+    });
+  </script>
+</body>
+</html>
