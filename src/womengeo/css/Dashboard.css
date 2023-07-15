@@ -1,0 +1,46 @@
+* {
+box-sizing: border-box;
+background-color: darkgray
+}
+
+html, body {
+  width: 120vw;
+  height: 300vh;
+  margin: 0;
+  float: left;
+  text-align: center;
+  font-family: 'Georgia', serif;
+    border: 2px solid magenta;
+
+}
+
+
+#map {
+  width: 70%;
+  height: 100vh;
+  margin: 0;
+  float: right;
+  padding: 40px 15px 900px 15px;
+  font-family: 'Georgia', serif;
+    border: 2px solid magenta;
+}
+
+#desc{
+  font-size: 14px;
+  color: black;
+}
+
+#desc2{
+  font-size: 14px;
+  color: black;
+}
+
+#title {
+font-size: 25px;
+font-family: 'Oswald', sans-serif;
+}
+
+.line {
+    fill: none;
+    stroke-width: 3;
+}

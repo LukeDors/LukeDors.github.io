@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title id="title">World Statistics for Violence Against Women</title>
+  <style>
+  svg {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000;
+  }
+  </style>
+</head>
+<body>
+  <h1>The World's Attitude Towards Violence Against Women</h1>
+  <p>by Luke Dorsett</p>
+  <div id="map">
+    <p>This bivariate map shows each nation's tendency towards violence against women coupled with their HDI. The goal is to identify which developed nations still are behind in terms of legistlation and public attitude for this social issue</p>
+  </div>
+  <div id="tooltip">
+    <div id="tip-header"></div>
+    <div id="tip-body"></div>
+  </div>
+  <div id="tooltip2">
+    <div id="tip-header2"></div>
+    <div id="tip-body2"></div>
+  </div>
+  <h2>National Ranking Compared to the Average</h2>
+  <svg id="graph"></svg>
+  <h2 id="desc">
+    HDI (Human Development Index) is a metric to indicate how developed a nation is.
+    This takes into account a variety of different factors outside of a nation's economy alone.
+  </h2>
+  <h2 id="desc2">
+    The factor for indicating a nation's tendency for violence against women takes several factors into account, including
+     rate of attacks on women, legislation which would protect women in these situations, and the general population's attitude towards domestic violence
+  </h2>
+  <script src="https://d3js.org/d3.v6.min.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+  <link rel="stylesheet" href="css/Dashboard.css">
+  <script src="js/base.js"></script>
+  <script src="js/sparkline.js"></script>
+
+  <script>
+
+      var height = 610;
+      var width = 1100;
+      var tipWidth = 200,
+            tipHeight = 200;
+
+      var chart = d3.select("#tip-body").append("svg")
+                     .attr('width', tipWidth).attr('height', tipHeight);
+
+      var chart2 = d3.select("#tip-body2").append("svg")
+                     .attr('width', tipWidth).attr('height', tipHeight);
+
+      var graph = d3.select("#graph").append("svg")
+                      .attr('width', 200).attr('height', 200);
+
+      var colors =  ["#e8e8e8", "#a6d9d9", "#5ac8c8",
+                      "#d3a7cb", "#a6a7cb", "#5aa7c8",
+                      "#be64ac", "#a664ac", "#5a64ac"]
+
+      var projection = d3.geoMercator()
+                     .scale(140)
+                     .translate([width/2, height/2])
+
+       var path = d3.geoPath().projection(projection);
+       var svg = d3.select("#map")
+           .append("svg")
+           .attr("width", width)
+           .attr("height", height)
+
+      Promise.all([d3.json('world-110.json'),
+                   d3.csv('data.csv')])
+                .then(function ready(loadData) {
+
+        var world = loadData[0];
+        var hdi = loadData[1];
+        var test = loadData[2]
+        var temp = d3.map(hdi, d => d.hdi)
+        var total = 0;
+        for(var i = 0; i < temp.length; i++) {
+          total += parseFloat(temp[i]);
+        }
+        var hdiavg = total / temp.length;
+        temp = d3.map(hdi, d => d.vio)
+        total = 0;
+        for(var i = 0; i < temp.length; i++) {
+          total += parseFloat(temp[i]);
+        }
+        var vioavg = total / temp.length;
+        averages = {"vio": vioavg, "hdi": hdiavg, "country": "Average"}
+        var countries = topojson.feature(world, world.objects.countries);
+        var data = new Map(hdi.map(d => [d.country, [+d.vio, +d.hdi]]));
+
+        var hdiSorted = hdi.slice().sort(function(a,b){return d3.descending(+a.hdi, +b.hdi);})
+        var vioSorted = hdi.slice().sort(function(a,b){return d3.ascending(+a.vio, +b.vio);})
+        var vioCountryList = vioSorted.map(d => d.country);
+        var countryList = hdiSorted.map(d => d.country);
+        var viobycountry = new Map(hdi.map(d => [d.country, +d.vio]))
+        console.log(viobycountry)
+        var hdibycountry = new Map(hdi.map(d => [d.country, +d.hdi]))
+
+        var n = Math.floor(Math.sqrt(colors.length));
+        var colorScale = d3.scaleSequential(d3.interpolate('blue', 'red')).domain([0, 1]);
+        var colorScale2 = d3.scaleSequential(d3.interpolate('red', 'blue')).domain([0, 100]);
+        var x = d3.scaleQuantile(Array.from(data.values(), d => d[0]), d3.range(n));
+        var y = d3.scaleQuantile(Array.from(data.values(), d => d[1]), d3.range(n));
+
+        var color = function(d){
+                    if (!d) {return "#ccc";} else
+                    {return colors[y(d[1]) + x(d[0]) * n];};};
+
+                    var svg = d3.select("svg"),
+                        margin = 200,
+                        width = svg.attr("width") - margin,
+                        height = svg.attr("height") - margin
+
+        var hover = function(d) {
+          if (countryList.includes(d.target.__data__.properties.name)) {
+              var div = document.getElementById('tooltip')
+              div.style.left = event.pageX +'px';
+              div.style.top = event.pageY + 'px';
+              d3.selectAll('path').style('stroke', 'transparent')
+              d3.select(this).style('stroke', 'grey').style('stroke-dasharray', ('3 3')).call(buildBar)
+              d3.select(this).style('stroke', 'grey').style('stroke-dasharray', ('3 3')).call(buildBarVio)
+              d3.select(this).style('stroke', 'grey').style('stroke-dasharray', ('3 3')).call(buildGraph)
+              var divHead = document.getElementById('tip-header')
+              divHead.innerHTML =  '<h2>  '+d.target.__data__.properties.name +'</h2>     <strong>Human Development Index: '
+              + hdibycountry.get(d.target.__data__.properties.name) + '/1' + '<h4>  rank ' + (countryList.indexOf(d.target.__data__.properties.name)+1)
+              + ' out of ' + countryList.length + '</h4>'
+              var divHead2 = document.getElementById('tip-header2')
+              divHead2.innerHTML =  '<strong>Violence Against Women Factor: '
+              + viobycountry.get(d.target.__data__.properties.name) + '/100 (Average: 27.88)' + '<h4>  rank ' + (vioCountryList.indexOf(d.target.__data__.properties.name)+1)
+              + ' out of ' + countryList.length + '</h4>'
+              desc = document.getElementById('desc')
+              buildGraph({"vio":viobycountry.get(d.target.__data__.properties.name),"hdi":hdibycountry.get(d.target.__data__.properties.name),"country":d.target.__data__.properties.name})
+              d3.selectAll('#'+d.target.__data__.properties.name).attr('fill','black')
+          }
+        }
+
+        var out = function(d){
+          var div = document.getElementById('tooltip')
+          d3.select(this).transition().duration(500)
+              .style('stroke', function(d){return '#fff'});
+          d3.select('#'+d.target.__data__.properties.name).attr('fill', 'purple')
+          var div = document.getElementById('tooltip2')
+          d3.selectAll('#'+d.target.__data__.properties.name).attr('fill', 'purple')
+        }
+
+        function buildBar(d) {
+           var xScale = d3.scaleLinear().domain([0, 1]).range([0, tipWidth]);
+           yScale = d3.scaleBand().domain(countryList).rangeRound([0, tipHeight]);
+           chart.selectAll('.bar')
+               .data(hdiSorted)
+               .enter().append('rect')
+               .attr('class', 'bar')
+               .attr('id', function(d) { return (d.country); })
+               .attr('x', xScale(0))
+               .attr('y', function(d) { return yScale(d.country); })
+               .attr('width', function(d) { return xScale(d.hdi); })
+               .attr('height', yScale.bandwidth())
+               .attr('fill', function(d){return colorScale(d.hdi);});
+        }
+
+        function buildBarVio(d) {
+           var xScale = d3.scaleLinear().domain([0, 100]).range([0, tipWidth]);
+           yScale = d3.scaleBand().domain(vioCountryList).rangeRound([0, tipHeight]);
+
+           chart2.selectAll('.bar')
+               .data(vioSorted)
+               .enter().append('rect')
+               .attr('class', 'bar')
+               .attr('id', function(d) { return (d.country); })
+               .attr('x', xScale(0))
+               .attr('y', function(d) { return yScale(d.country); })
+               .attr('width', function(d) { return xScale(d.vio); })
+               .attr('height', yScale.bandwidth())
+               .attr('fill', function(d){return colorScale2(d.vio);});
+        }
+        function buildGraph(countrydata){
+          d3.select("#graph").selectAll(".bar").remove();
+          var xScale = d3.scaleBand().domain([countryList]).range([0, 150]).padding(0.4),
+                      yScale = d3.scaleLinear().domain([1, 100]).range([200, 0]);
+
+          var g = graph.append("g")
+
+          newdata = [countrydata, averages]
+
+         var x = d3.scaleBand()
+           .range([ 0, 200 ])
+           .domain(newdata.map(function(d) { return d.country; }))
+           .padding(0.2);
+
+          g.selectAll(".bar")
+           .data(newdata)
+           .enter().append("rect")
+           .attr("class", "bar")
+           .attr("x", function(d) { console.log(d.country); return x(d.country); })
+           .attr("y", function(d) { return 200 - yScale(d.vio); })
+           .attr("width", xScale.bandwidth())
+           .attr("height", function(d) { console.log(200 - yScale(d.vio)); return yScale(d.vio); })
+           .attr('fill', function(d){return colorScale2(d.vio);});
+        }
+
+        svg.selectAll("path")
+          .data(countries.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .attr("class", "country")
+          .on("mouseover", hover)
+          .on("mouseout", out)
+          .style("fill", function (d) {return color(data.get(d.properties.name));})
+          .style("stroke", '#fff');
+
+       var graticule = d3.geoGraticule();
+       d3.select("svg").insert("path", "path.country")
+         .datum(graticule)
+         .attr("class", "graticule line")
+         .attr("d", path)
+         .attr("fill", "blue")
+
+      svg.append("path")
+        .datum(topojson.mesh(world, world.objects.countries, (a, b) => a !== b))
+        .attr("fill", "none")
+        .attr("stroke", "white")
+        .attr("stroke-linejoin", "round")
+        .attr("d", path);
+
+       var k = 24;
+       var ci = [[0,0],[0,1],[0,2],
+                 [1,0],[1,1],[1,2],
+                 [2,0],[2,1],[2,2]]
+    var legend1 = svg.append("g")
+                     .attr("transform", "translate(800,450)")
+                     .selectAll("rect").data(ci).enter()
+                     .append("rect")
+                     .attr('width',k)
+                     .attr('height', k)
+                     .attr('x', function(d){return (d[0]*k)})
+                     .attr('y', function(d){return ((2-d[1])*k)})
+                     .attr('fill', function(d){ return colors[3*d[0] + d[1]]});
+
+    var legend = svg.append("g")
+                    .attr("transform", "translate(800,450)")
+        legend.append('g')
+              .attr("font-family", "sans-serif")
+              .attr("font-size", 10)
+              .attr("transform","translate(-30,-30)" );
+
+       legend.append("g")
+              .append("path")
+              .attr("d", "M0,-2L0,72L72,72")
+              .attr('stroke', 'black')
+              .attr("fill", "none");
+
+       legend.append("g")
+              .append("path")
+              .attr("d", "M-4,-2L4,-2L0,-8Z")
+              .attr("stroke", "black");
+
+       legend.append("g")
+              .append("path")
+              .attr("d", "M72,68L72,76L78,72Z")
+              .attr("stroke", "black");
+
+       legend.append("g")
+             .append("text")
+             .text("Violence Against Women Factor")
+             .attr("x", 20).attr("y",88);
+
+       legend.append("g").append("text").text("HDI")
+             .attr("x", 0).attr("y",0)
+             .attr("transform", "translate(-3, 60), rotate(270)");
+
+    })
+  </script>
+  <p>Data Credits: OECD (Organisation for Economic Co-operation and Development), UNDP (United Nations Development Programme)</p>
+</body>
