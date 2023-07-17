@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>League Data Analysis</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+      display: flex;
+      /* align-items: center; */
+      justify-content: center;
+      height: 100vh;
+      margin-top: 20px;
+      margin-right: 100px;
+      margin-left: 100px;
+      font-family: Arial, sans-serif;
+    }
+    .content {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>League of Legends Data Analysis</h1>
+    <p>For this project I have begun gathering game data for all champions in League of Legends on their most decicated and highest ranked players (OTPs).
+        As a result, I will have the most recent games from various sites (lolalytics.com, u.gg, op.gg) from the top 50 OTPs from each major region (EUW, KR, NA), 
+        and I may include LAS as well. Currently, I have collected data from Galio OTPs to get a general sense of the data I will be working with. 
+        Each snapshot is structured like the code below:
+    </p>
+    <br>
+    <h4>
+        My goals for this data are:
+    </h4>
+    <p>• Display what top OTPs build for various matchups</p>
+    <p>• Identify any differences between champs in other regions</p>
+    <p>• Discover which champions are the most feast/famine</p>
+    <p>• Find the best bans based on top players for each champion</p>
+    <p>• Highlight the biggest differences between OTP winrates and non-OTP winrates (skill floor/ceiling)</p>
+    <p>• Show which champions scale the best comparatively</p>
+    <p>• Find ideal champion pools given a single champion</p>
+    <p>• Create a machine learning model which predicts game outcomes at team preview</p>
+    <p>As This is an example of each game. This will likely fluctuate in terms of structure after I transition to using the Riot API, but that only allows me 
+      to get the most recent 20 games from each player. With scraping, I can collect far more than just 20 games.
+    </p>
+    <br>
+    <h4>
+      This is an example for each datapoint I will be working with for now:
+    </h4>
+    <div class="code-box">
+      <pre><code>
+        {
+          "_id": {"$oid": "64aeed5fa97e5cf224f7e9de"},
+          "region": "kr",
+          "match_length": "31",
+          "blue_bans": ["Lee Sin", "LeBlanc", "Rumble", "Kai'Sa", "Rell"],
+          "red_bans": ["Nidalee", "LeBlanc", "Rakan", "Jax", "Syndra"],
+          "user_runes": ["8124", "8139", "8138", "8105", "8473", "8242"],
+          "blue_towers_destroyed": "1",
+          "blue_inhibs_destroyed": "0",
+          "blue_dragons_killed": "0",
+          "blue_heralds_killed": "0",
+          "blue_barons_killed": "0",
+          "red_towers_destroyed": "2",
+          "red_inhibs_destroyed": "2",
+          "red_dragons_killed": "4",
+          "red_heralds_killed": "1",
+          "red_barons_killed": "9",
+          "blue_kills": "21",
+          "blue_deaths": "35",
+          "blue_assists": "43",
+          "red_kills": "78",
+          "result": "loss",
+          "champs": [
+            {
+              "champ_name": "garen",
+              "level": "16",
+              "team": "blue",
+              "role": "top",
+              "keystone": "8230",
+              "secondary": "8300",
+              "summoner_spells": ["Ignite", "Flash"],
+              "tag": "규 보 리",
+              "rank": "grandmaster",
+              "final_build": [
+                "Stridebreaker",
+                "Berserker's Greaves",
+                "Sterak's Gage",
+                "Phantom Dancer",
+                "Oracle Lens"
+              ],
+              "kills": "6",
+              "deaths": "6",
+              "assists": "3",
+              "participation": "43",
+              "damage": "11809",
+              "control_wards": "1",
+              "trinkets": "7",
+              "scanners": "7",
+              "gold": "12",
+              "jg_cs": "12",
+              "lane_cs": "223",
+              "item_timestamps": {
+                "0": {"bought": ["Doran's Shield", "Health Potion"], "sold": []},
+                "5": {"bought": ["Long Sword", "Berserker's Greaves"], "sold": []},
+                "9": {"bought": ["Hearthbound Axe"], "sold": []},
+                "11": {"bought": ["Ironspike Whip"], "sold": []},
+                "15": {"bought": ["Dagger", "Stridebreaker"], "sold": []},
+                "16": {"bought": ["Zeal"], "sold": []},
+                "18": {"bought": ["Long Sword"], "sold": []},
+                "19": {"bought": ["Long Sword", "Oracle Lens"], "sold": []},
+                "21": {"bought": ["Ruby Crystal", "Control Ward", "Phantom Dancer"], "sold": []},
+                "23": {"bought": ["Phage"], "sold": []},
+                "27": {"bought": ["Pickaxe"], "sold": []},
+                "28": {"bought": ["Ruby Crystal", "Sterak's Gage"], "sold": ["Doran's Shield"]}
+              },
+              "q_order": ["1", "8"],
+              "w_order": ["2"],
+              "e_order": ["3", "4", "5", "7", "9"],
+              "r_order": ["6"]
+            },...
+          ]
+        }
+      </code></pre>
+    </div>
+  </div>
+</body>
+</html>
