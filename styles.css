@@ -1,16 +1,30 @@
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+
 .flex-container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-left: 100px;
   margin-right: 100px;
 }
 
 .flex-item {
+  flex-basis: calc(33.33% - 200px);
   margin-left: 100px;
   margin-right: 100px;
 }
 
-h1 {
-  text-align: center;
+@media screen and (max-width: 1000px) {
+  .flex-item {
+    flex-basis: calc(50% - 200px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flex-item {
+    flex-basis: 100%;
+  }
 }

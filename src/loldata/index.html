@@ -1,30 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>League Data Analysis</title>
+  <title>League Data Analysis Overview</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <style>
-    body {
-      display: flex;
-      /* align-items: center; */
-      justify-content: center;
-      height: 100vh;
-      margin-top: 20px;
-      margin-right: 100px;
-      margin-left: 100px;
-      font-family: Arial, sans-serif;
-    }
-    .content {
-      text-align: left;
-    }
-  </style>
 </head>
 <body>
   <div class="content">
-    <h1>League of Legends Data Analysis</h1>
+    <h1>League of Legends Data Analysis Overview</h1>
     <p>For this project I have begun gathering game data for all champions in League of Legends on their most decicated and highest ranked players (OTPs).
         As a result, I will have the most recent games from various sites (lolalytics.com, u.gg, op.gg) from the top 50 OTPs from each major region (EUW, KR, NA), 
-        and I may include LAS as well. Currently, I have collected data from Galio OTPs to get a general sense of the data I will be working with. 
+        and I may include LAS as well. Currently, I have collected data from Galio OTPs to get a general sense of the data I will be working with. I am using MongoDB
+        for this, as I want the ease of working with specific collections, although I will have to later restructure much of this into standard tabular dataframes later 
+        in the project.
         Each snapshot is structured like the code below:
     </p>
     <br>
@@ -122,6 +109,10 @@
         }
       </code></pre>
     </div>
+    <p>
+      This is a multi-part project, the first of which can be found <a href="p1/index.html">here</a> (incomplete). Eventually, I will create 
+      an entire site which visualizes each element of this project in a user-friendly manner, but for now it will be a step-by-step process.
+    </p>
   </div>
 </body>
 </html>

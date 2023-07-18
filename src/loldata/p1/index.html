@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>League Data Analysis Part 1</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="content">
+    <h1>League of Legends Data Analysis Part 1: Itemization Trends</h1>
+    <p>
+        See "Overview" section for background information on the project
+    </p>
+    <br>
+    <h4>
+        Galio Itemization
+    </h4>
+    <p>
+        To begin, I took the data I collected on Korean Galio OTPs and wrote a script which finds each of the first items purchased 
+        in each final build. This only includes items which are in the final build at the end of the game, so there is always the possibility 
+        of some inconsistencies with the data via selling items. Note this does not include Potions, Wards/Trinkets, Tier 1 Boots, 
+        or Dark Seal, but DOES include Bramble Vest and Oblivion Orb as those are important to rush in some matchups.
+    </p>
+    <p>
+        Additionally, I only grabbed games where galio played in midlane. There are some Galio support OTPs and likely some games toplane, 
+        but in order to maximize the data and prevent a small number of datapoints in other roles, I kept it to midlane for now.
+    </p>
+    <br>
+    <h4>
+      After running this function:
+    </h4>
+    <div class="code-box">
+        <pre><code>
+            def find_common_combinations(data):
+                combinations = {}
+                first_item_counts = Counter()
+
+                # Iterate over each list
+                for lst in data:
+                    if len(lst) > 2: #only get games where item total was 3+
+                        first_item = lst[0]
+                        three_items = lst[1:4]
+
+                        if first_item not in combinations:
+                            combinations[first_item] = []
+
+                        combinations[first_item].append(three_items)
+                        first_item_counts[first_item] += 1
+
+                #Find the most common three-item combinations for each first item
+                common_combinations = {}
+                for key, value in combinations.items():
+                    counter = Counter(map(tuple, value))
+                    most_common = counter.most_common(1)
+                    common_combinations[key] = most_common[0][0]
+
+                #Fine the frequency of each first item compared to the other first items
+                total_first_items = sum(first_item_counts.values())
+                frequencies = {key: value / total_first_items for key, value in first_item_counts.items()}
+                frequencies = sorted(frequencies.items(), key=lambda x: x[1], reverse=True)
+
+                return common_combinations, frequencies
+        </code></pre>
+    </div>
+    <h4>
+        Output:
+    </h4>
+    <div class="code-box">
+        <pre><code>
+            {"Mercury's Treads": ('Everfrost', "Zhonya's Hourglass"),
+            "Sorcerer's Shoes": ('Night Harvester', "Mejai's Soulstealer"),
+            'Ionian Boots of Lucidity': ('Everfrost', "Zhonya's Hourglass"),
+            'Everfrost': ("Sorcerer's Shoes", "Zhonya's Hourglass"),
+            'Plated Steelcaps': ('Everfrost', "Zhonya's Hourglass"),
+            'Abyssal Mask': ('Plated Steelcaps', 'Frozen Heart'),
+            'Oblivion Orb': ('Everfrost', "Sorcerer's Shoes"),
+            'Night Harvester': ("Sorcerer's Shoes", "Zhonya's Hourglass"),
+            'Hextech Rocketbelt': ('Ionian Boots of Lucidity', 'Morellonomicon'),
+            'Boots of Swiftness': ('Everfrost', "Zhonya's Hourglass", 'Morellonomicon'),
+            'Bramble Vest': ('Everfrost', "Zhonya's Hourglass"),
+            "Mejai's Soulstealer": ('Everfrost', "Zhonya's Hourglass", 'Mobility Boots'),
+            "Liandry's Anguish": ('Ionian Boots of Lucidity', 'Oblivion Orb')}
+        </code></pre>
+    </div>
+    <br>
+    <div class="code-box">
+        <pre><code>
+            [('Everfrost', 0.28703703703703703),
+            ('Ionian Boots of Lucidity', 0.1962962962962963),
+            ("Sorcerer's Shoes", 0.1388888888888889),
+            ("Mercury's Treads", 0.13703703703703704),
+            ('Night Harvester', 0.07962962962962963),
+            ('Oblivion Orb', 0.040740740740740744),
+            ("Liandry's Anguish", 0.040740740740740744),
+            ('Hextech Rocketbelt', 0.03148148148148148),
+            ('Plated Steelcaps', 0.024074074074074074),
+            ('Abyssal Mask', 0.011111111111111112),
+            ('Boots of Swiftness', 0.005555555555555556),
+            ('Bramble Vest', 0.003703703703703704),
+            ("Mejai's Soulstealer", 0.003703703703703704)]
+        </code></pre>
+    </div>
+  </div>
+  <br>
+  <h4>
+    Analysis:
+  </h4>
+  <p>
+    These are the sorts of findings I was hoping to have, as there is a fairly even distribution between many of these items. I was worried 
+    that the end result would be ~60% Everfrost, which I am aware is the main mythic item on Galio, but there seems to be a wider variety 
+    of playstyles than I previously thought. Obviously the next three items being boots makes perfect sense, as midlane requires a lot of 
+    different skillshots to dodge, but seeing the occasional Night Harvester or Liandry's Anguish is exciting. It means I can go and 
+    visualize what players do into different matchups, and it will not always be Everfrost into Merc Treads. Some players are playing 
+    tank Galio with the Abyssal Mask into Frozen Heart, which is not usually two items one would commonly associate with Galio, so I am 
+    interested to see what some of the matchup data looks like.
+  </p>
+</body>
+</html>
