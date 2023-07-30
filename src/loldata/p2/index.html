@@ -6,61 +6,35 @@
 </head>
 <body>
   <div class="content">
-    <h1>League of Legends Data Analysis Part 1: Itemization Trends</h1>
+    <h1>League of Legends Data Analysis Part 2: Champion Correlative Trends</h1>
     <p>
         See "Overview" section for background information on the project
     </p>
-    <h2>THIS SECTION IS OUTDATED CURRENTLY, AS MY DATA SOURCE HAS CHANGED</h2>
     <br>
     <h4>
-        Galio Itemization
+        Data Cleaning
     </h4>
     <p>
-        To begin, I took the data I collected on Korean Galio OTPs and wrote a script which finds each of the first items purchased 
-        in each final build. This only includes items which are in the final build at the end of the game, so there is always the possibility 
-        of some inconsistencies with the data via selling items. Note this does not include Potions, Wards/Trinkets, Tier 1 Boots, 
-        or Dark Seal, but DOES include Bramble Vest and Oblivion Orb as those are important to rush in some matchups.
+        For this section, I converted the bulk of my Mongo database into a Pandas dataframe for aggragation and ease of use. I 
+        removed duplicate rows and then separated the dataframe into smaller dataframes where the only data is of a single champion.
     </p>
     <p>
-        Additionally, I only grabbed games where galio played in midlane. There are some Galio support OTPs and likely some games toplane, 
-        but in order to maximize the data and prevent a small number of datapoints in other roles, I kept it to midlane for now.
+        This data will be skewed somewhat because I did not separate by role. Obviously lanes will differ in various different ways, but 
+        this is more a test for now to see what the data looks like. In addition, some champions will be missing as they did not have OTP 
+        data at the time of collection. This will be later updated.
     </p>
+    <p>
+        I ran the following code which helped me identify which variables I should focus on, create the table I will use for the graph, 
+        and create the graph itself:
+    </p>
+    <br>
+    <script src="https://gist.github.com/LukeDors/bef72dc9ae6307ec9dd002ccb3189060.js"></script>
     <br>
     <h4>
       After running this function:
     </h4>
-    <div class="code-box">
-        <pre><code>
-            def find_common_combinations(data):
-                combinations = {}
-                first_item_counts = Counter()
-
-                # Iterate over each list
-                for lst in data:
-                    if len(lst) > 2: #only get games where item total was 3+
-                        first_item = lst[0]
-                        three_items = lst[1:4]
-
-                        if first_item not in combinations:
-                            combinations[first_item] = []
-
-                        combinations[first_item].append(three_items)
-                        first_item_counts[first_item] += 1
-
-                #Find the most common three-item combinations for each first item
-                common_combinations = {}
-                for key, value in combinations.items():
-                    counter = Counter(map(tuple, value))
-                    most_common = counter.most_common(1)
-                    common_combinations[key] = most_common[0][0]
-
-                #Fine the frequency of each first item compared to the other first items
-                total_first_items = sum(first_item_counts.values())
-                frequencies = {key: value / total_first_items for key, value in first_item_counts.items()}
-                frequencies = sorted(frequencies.items(), key=lambda x: x[1], reverse=True)
-
-                return common_combinations, frequencies
-        </code></pre>
+    <div class="graph">
+        <img src="corr1.png"></img>
     </div>
     <h4>
         Output:
