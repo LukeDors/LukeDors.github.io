@@ -1,0 +1,186 @@
+1690152688247	geckodriver	INFO	Listening on 127.0.0.1:58845
+1690152691319	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "58846" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofileYqPeNP"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690152691566	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690152691621	Marionette	INFO	Listening on port 58856
+WebDriver BiDi listening on ws://127.0.0.1:58846
+Read port: 58856
+1690152691784	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:58846/devtools/browser/066332c3-046d-4edf-bbdd-e5a4835f315d
+console.error: (new TypeError("linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1690153838202	Marionette	INFO	Stopped listening on port 58856
+Dynamically enable window occlusion 1
+ETTINGS_DEVTOOLS=1 in the environment
+1690153033356	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690153033418	Marionette	INFO	Listening on port 59329
+WebDriver BiDi listening on ws://127.0.0.1:59319
+Read port: 59329
+1690153033597	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:59319/devtools/browser/def5cebc-a61b-4cc9-9b21-e3253638affe
+1690153839304	Marionette	INFO	Stopped listening on port 59329
+Dynamically enable window occlusion 1
+ng command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "59472" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofile9vgbPq"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690153085266	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690153085319	Marionette	INFO	Listening on port 59483
+WebDriver BiDi listening on ws://127.0.0.1:59472
+Read port: 59483
+1690153085502	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:59472/devtools/browser/0ce6339c-8331-489f-97ee-0c113a153b67
+1690153841145	Marionette	INFO	Stopped listening on port 59483
+Dynamically enable window occlusion 1
+ng command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "60186" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofilebNOmXC"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690153832729	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690153832785	Marionette	INFO	Listening on port 60200
+WebDriver BiDi listening on ws://127.0.0.1:60186
+Read port: 60200
+1690153832952	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:60186/devtools/browser/53c2659b-772f-47bb-b331-991cbf61538f
+1690162045273	Marionette	INFO	Stopped listening on port 60200
+Dynamically enable window occlusion 1
+1690162052501	geckodriver	INFO	Listening on 127.0.0.1:65167
+1690162055551	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "65168" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofileLyBgU1"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690162055793	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690162055845	Marionette	INFO	Listening on port 65178
+WebDriver BiDi listening on ws://127.0.0.1:65168
+Read port: 65178
+1690162056027	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:65168/devtools/browser/d4e3cd48-a2fb-42fa-9b3f-3606b7b88933
+1690186476033	Marionette	INFO	Stopped listening on port 65178
+Dynamically enable window occlusion 1
+ng command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "63314" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofileA5RUrY"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690186204173	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690186204234	Marionette	INFO	Listening on port 63325
+WebDriver BiDi listening on ws://127.0.0.1:63314
+Read port: 63325
+1690186204433	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:63314/devtools/browser/c76bb7ee-7cf9-49ee-b168-e561ea30d314
+1690186473577	Marionette	INFO	Stopped listening on port 63325
+Dynamically enable window occlusion 1
+ng command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "63503" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofileCKoVeT"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690186410414	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690186410465	Marionette	INFO	Listening on port 63514
+WebDriver BiDi listening on ws://127.0.0.1:63503
+Read port: 63514
+1690186410626	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:63503/devtools/browser/2d7ea39b-e9e8-4948-bd9b-916449cf5914
+1690186472954	Marionette	INFO	Stopped listening on port 63514
+Dynamically enable window occlusion 1
+ng command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "63610" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofile3lpwjP"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690186460130	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690186460184	Marionette	INFO	Listening on port 63620
+Read port: 63620
+WebDriver BiDi listening on ws://127.0.0.1:63610
+1690186460223	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:63610/devtools/browser/98b6f868-b713-441b-b7cb-6c3dbddd1dfb
+1690227345328	Marionette	INFO	Stopped listening on port 63620
+Dynamically enable window occlusion 1
+1690228533597	geckodriver	INFO	Listening on 127.0.0.1:57941
+1690228536695	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "57942" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofilePB7ZPl"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690228537004	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690228537068	Marionette	INFO	Listening on port 57953
+WebDriver BiDi listening on ws://127.0.0.1:57942
+Read port: 57953
+1690228537260	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57942/devtools/browser/4d889b9a-bf2b-4a91-b0c9-1bac7865c809
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+1690255591924	Marionette	INFO	Stopped listening on port 57953
+Dynamically enable window occlusion 1
+1690255592984	geckodriver	INFO	Listening on 127.0.0.1:64998
+1690255596061	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "64999" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofile7B1kaK"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690255596372	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690255596434	Marionette	INFO	Listening on port 65011
+WebDriver BiDi listening on ws://127.0.0.1:64999
+Read port: 65011
+1690255596632	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:64999/devtools/browser/5bddb36e-f72e-40ae-b2cf-afcbe95b5f5b
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+JavaScript error: https://s.nitropay.com/ads-138.js, line 2: TypeError: window.nitroAds is undefined
+1690343414609	Marionette	INFO	Stopped listening on port 65011
+Dynamically enable window occlusion 1
+1690357178741	geckodriver	INFO	Listening on 127.0.0.1:56480
+1690357181846	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "56481" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Luke\\AppData\\Local\\Temp\\rust_mozprofilelYbsZZ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1690357182135	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1690357182199	Marionette	INFO	Listening on port 56490
+WebDriver BiDi listening on ws://127.0.0.1:56481
+Read port: 56490
+1690357182401	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56481/devtools/browser/4dc12be3-4aab-4a56-bf2d-1849e4ec7d8d
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1690402330046	Marionette	INFO	Stopped listening on port 56490
+Dynamically enable window occlusion 1
+[Parent 10912, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
