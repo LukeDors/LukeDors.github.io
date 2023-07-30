@@ -36,57 +36,25 @@
     <div class="graph">
         <img src="corr1.png"></img>
     </div>
-    <h4>
-        Output:
-    </h4>
-    <div class="code-box">
-        <pre><code>
-            {"Mercury's Treads": ('Everfrost', "Zhonya's Hourglass"),
-            "Sorcerer's Shoes": ('Night Harvester', "Mejai's Soulstealer"),
-            'Ionian Boots of Lucidity': ('Everfrost', "Zhonya's Hourglass"),
-            'Everfrost': ("Sorcerer's Shoes", "Zhonya's Hourglass"),
-            'Plated Steelcaps': ('Everfrost', "Zhonya's Hourglass"),
-            'Abyssal Mask': ('Plated Steelcaps', 'Frozen Heart'),
-            'Oblivion Orb': ('Everfrost', "Sorcerer's Shoes"),
-            'Night Harvester': ("Sorcerer's Shoes", "Zhonya's Hourglass"),
-            'Hextech Rocketbelt': ('Ionian Boots of Lucidity', 'Morellonomicon'),
-            'Boots of Swiftness': ('Everfrost', "Zhonya's Hourglass", 'Morellonomicon'),
-            'Bramble Vest': ('Everfrost', "Zhonya's Hourglass"),
-            "Mejai's Soulstealer": ('Everfrost', "Zhonya's Hourglass", 'Mobility Boots'),
-            "Liandry's Anguish": ('Ionian Boots of Lucidity', 'Oblivion Orb')}
-        </code></pre>
-    </div>
-    <br>
-    <div class="code-box">
-        <pre><code>
-            [('Everfrost', 0.28703703703703703),
-            ('Ionian Boots of Lucidity', 0.1962962962962963),
-            ("Sorcerer's Shoes", 0.1388888888888889),
-            ("Mercury's Treads", 0.13703703703703704),
-            ('Night Harvester', 0.07962962962962963),
-            ('Oblivion Orb', 0.040740740740740744),
-            ("Liandry's Anguish", 0.040740740740740744),
-            ('Hextech Rocketbelt', 0.03148148148148148),
-            ('Plated Steelcaps', 0.024074074074074074),
-            ('Abyssal Mask', 0.011111111111111112),
-            ('Boots of Swiftness', 0.005555555555555556),
-            ('Bramble Vest', 0.003703703703703704),
-            ("Mejai's Soulstealer", 0.003703703703703704)]
-        </code></pre>
-    </div>
-  </div>
   <br>
   <h4>
     Analysis:
   </h4>
   <p>
-    These are the sorts of findings I was hoping to have, as there is a fairly even distribution between many of these items. I was worried 
-    that the end result would be ~60% Everfrost, which I am aware is the main mythic item on Galio, but there seems to be a wider variety 
-    of playstyles than I previously thought. Obviously the next three items being boots makes perfect sense, as midlane requires a lot of 
-    different skillshots to dodge, but seeing the occasional Night Harvester or Liandry's Anguish is exciting. It means I can go and 
-    visualize what players do into different matchups, and it will not always be Everfrost into Merc Treads. Some players are playing 
-    tank Galio with the Abyssal Mask into Frozen Heart, which is not usually two items one would commonly associate with Galio, so I am 
-    interested to see what some of the matchup data looks like.
+    This graph is more expressive than I thought it would be, given that I do not have as much data as I would like.
   </p>
+  <h4>
+    Things visible to indicate this is a valid way if interpreting the data:
+  </h4>
+  <br>
+  <p>• A lot of champs that depend on innate traits for viability or heavy CC dont require a lot of gold or a huge lead (Annie, Maokai, Sion).</p>
+  <p>• Champs like Shen/Warwick will never have a lead for the most part, since they have no waveclear and depend on roaming/CC for usefulness.</p>
+  <p>• Heavy snowballing junglers are at the top for both areas, alongside ADCs. These are the best champions for easily winning games when ahead, so this makes sense.</p>
+  <p>• Toplaners, notably bruisers who are famous for having the least impact are at the bottom for both spectrums, so that checks out.</p>
+  <p>• Supports dont require much of a lane lead, but do require gold which I find odd. A huge number of supports are in the same area though, so I am inclined 
+    to feel that it is an accurate trend though.
+  </p>
+  <p>• Shaco apparently requires no gold at all! Likely an outlier which will change with more data, but a funny observation nonetheless.</p>
+
 </body>
 </html>
