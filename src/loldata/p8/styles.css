@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    text-align: left;
+}
+
+.code-box {
+    background-color: #f1f1f1;
+    border: 1px solid #707070;
+    border-radius: 4px;
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+  
+.code-box pre {
+    margin: 0;
+}
+  
+.code-box code {
+    display: block;
+    white-space: pre;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+}
