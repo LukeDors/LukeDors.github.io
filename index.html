@@ -1,76 +1,231 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Luke Dorsett Project Portfolio</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  <body>
-    <h1>Luke Dorsett Project Portfolio</h1>
-    <br>
-    <div class="flex-container">
-      <div class="flex-item">
-        <h2>
-          <a href="https://github.com/LukeDors/flight_ticket_prediction/blob/main/report.pdf">Flight Ticket Price Prediction</a>
-        </h2>
-        <h4>Pandas, Matplotlib, Scikit-Learn, Random Forest Regression</h4>
-        <p>WGU Data Analytics capstone where I analyze a flight ticket dataset and predict the price of a ticket given various factors using a Random Forest Regressor</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="https://github.com/LukeDors/Tidy_Tuesday">Tidy Tuesday Analyses</a>
-        </h2>
-        <h4>Pandas, Matplotlib, Scikit-Learn, Plotly, Tableau, Power BI</h4>
-        <p>A collection of Tidy Tuesday dataset analyses with accompanying dashboards</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="https://nfldashboardfinal-3dvd69amcfb3jxugrqhayt.streamlit.app/">NFL Dashboard</a>
-        </h2>
-        <h4>Pandas, Streamlit</h4>
-        <p>An interactive Streamlit dashboard which shows a visualization of a team's drive from any game as well as player stats</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="src/womengeo/index.html">Mapping Domestic Violence Worldwide</a>
-        </h2>
-        <h4>D3.js, GIS, Sparkline.js, Selenium</h4>
-        <p>I made a map of the world that shows the level of domestic violence which the women in that nation face. There is an interactive dashboard which displays the ranking of each nation, and they are colored on the map to indicate their overall level of safety to women.</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="src/loldata/index.html">League of Legends Analysis Project Overview</a>
-        </h2>
-        <h4>MongoDB</h4>
-        <p>Extensive League of Legends information based off of masters of each champion</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="src/loldata/p1/index.html">League of Legends Analysis Project Part 1: Itemization</a>
-        </h2>
-        <h4>MongoDB</h4>
-        <p>Analysis of League of Legends OTP itemization</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="src/loldata/p2/index.html">League of Legends Analysis Project Part 2: Correlations</a>
-        </h2>
-        <h4>MongoDB, Pandas, Matplotlib</h4>
-        <p>Exploring Correlations in League of Legends Data</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="src/loldata/p3/index.html">League of Legends Analysis Project Part 3: Regional Differences</a>
-        </h2>
-        <h4>MongoDB, Pandas, Matplotlib, Altair</h4>
-        <p>Identifying Regional Differences in League of Legends</p>
-      </div>
-      <div class="flex-item">
-        <h2>
-          <a href="src/rocketleague/radar_chart.html">Rocket League Radar Graph</a>
-        </h2>
-        <h4>D3.js, Pandas, Selenium</h4>
-        <p>Shows radar chart for Rocket League data. *KNOWN BUG*, graph does not update until player is changed.</p>
-      </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #e0e0e0;
+            --primary-color: #16213e;
+            --secondary-color: #0f3460;
+            --accent-color: #e94560;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .container {
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        h1, h2 {
+            text-align: center;
+            color: var(--accent-color);
+        }
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--secondary-color);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--primary-color);
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid var(--secondary-color);
+            padding: 12px;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+        }
+        tr:nth-child(even) {
+            background-color: var(--primary-color);
+        }
+        tr:hover {
+            background-color: var(--secondary-color);
+        }
+        th:nth-child(1), td:nth-child(1) { width: 12%; }
+        th:nth-child(2), td:nth-child(2) { width: 12%; }
+        th:nth-child(3), td:nth-child(3) { width: 12%; }
+        th:nth-child(4), td:nth-child(4) { width: 16%; }
+        th:nth-child(5), td:nth-child(5) { width: 16%; }
+        th:nth-child(6), td:nth-child(6) { width: 20%; }
+        th:nth-child(7), td:nth-child(7) { width: 12%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reports Dashboard</h1>
+        <div class="navbar">
+            <button id="allReports">All Reports</button>
+            <div class="dropdown">
+                <button>Models▼</button>
+                <div class="dropdown-content" id="modelDropdown"></div>
+            </div>
+            <div class="dropdown">
+                <button>Task▼</button>
+                <div class="dropdown-content" id="taskDropdown"></div>
+            </div>
+            <div class="dropdown">
+                <button>Dataset▼</button>
+                <div class="dropdown-content" id="datasetDropdown"></div>
+            </div>
+            <div class="dropdown">
+                <button>Tags▼</button>
+                <div class="dropdown-content" id="tagDropdown"></div>
+            </div>
+            <button id="resetFilters">Reset Filters</button>
+        </div>
+        <h2 id="subtitle">Latest Reports</h2>
+        <table id="reportsTable">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Dataset</th>
+                    <th>Model</th>
+                    <th>Report</th>
+                    <th>Dashboard</th>
+                    <th>Github Link</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <a href="./old/index.html">(Temporary) Old Portfolio</a>
     </div>
-  </body>
+
+    <script>
+        const reports = [
+            { task: 'Classification', dataset: 'Fraud', model: 'RFC', report: "<a href='google.com'>test</a>", dashboard: 'dashboard link', github: 'link', date: '2024-06-28', tags: ['Imbalanced classification', 'Oversampling'] },
+            { task: 'Classification', dataset: 'Fraud', model: 'DTC', report: 'Report', dashboard: 'dashboard link', github: 'link', date: '2024-06-28', tags: ['Imbalanced classification', 'Undersampling'] },
+            { task: 'Clustering', dataset: 'IMDB', model: 'Kmeans', report: 'Report', dashboard: "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/2019/tv_ratings/report/imdb_dramas.pdf'>Link</a>", github: 'https://github.com/LukeDors/Tidy_Tuesday/tree/main/2019/tv_ratings/report', date: '2024-06-28', tags: ['Kmeans', 'Clustering'] },
+        ];
+
+        // for (let i = 0; i < reports.length; i++) {
+        //     reports[i].report
+        // } 
+
+        function populateTable(data) {
+            const tableBody = document.querySelector('#reportsTable tbody');
+            tableBody.innerHTML = '';
+            data.forEach(report => {
+                const row = tableBody.insertRow();
+                Object.entries(report).forEach(([key, value]) => {
+                    if (key !== 'tags') {
+                        const cell = row.insertCell();
+                        cell.innerHTML = value;
+                        //cell.textContent = value;
+                        cell.title = value;
+                    }
+                });
+            });
+        }
+
+        function populateDropdowns() {
+            const models = [...new Set(reports.map(r => r.model))];
+            const tasks = [...new Set(reports.map(r => r.task))];
+            const datasets = [...new Set(reports.map(r => r.dataset))];
+            const tags = [...new Set(reports.flatMap(r => r.tags))];
+
+            populateDropdown('modelDropdown', models);
+            populateDropdown('taskDropdown', tasks);
+            populateDropdown('datasetDropdown', datasets);
+            populateDropdown('tagDropdown', tags);
+        }
+
+        function populateDropdown(id, items) {
+            const dropdown = document.getElementById(id);
+            dropdown.innerHTML = '';
+            items.forEach(item => {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = item;
+                a.onclick = () => filterReports(id, item);
+                dropdown.appendChild(a);
+            });
+        }
+
+        function filterReports(dropdownId, value) {
+            let filteredReports = reports;
+            if (dropdownId === 'modelDropdown') {
+                filteredReports = reports.filter(r => r.model === value);
+            } else if (dropdownId === 'taskDropdown') {
+                filteredReports = reports.filter(r => r.task === value);
+            } else if (dropdownId === 'datasetDropdown') {
+                filteredReports = reports.filter(r => r.dataset === value);
+            } else if (dropdownId === 'tagDropdown') {
+                filteredReports = reports.filter(r => r.tags.includes(value));
+            }
+            populateTable(filteredReports);
+            document.getElementById('subtitle').textContent = `Reports for ${value}`;
+        }
+
+        document.getElementById('allReports').onclick = () => {
+            populateTable(reports);
+            document.getElementById('subtitle').textContent = 'All Reports';
+        };
+
+        document.getElementById('resetFilters').onclick = () => {
+            populateTable(reports);
+            document.getElementById('subtitle').textContent = 'Latest Reports';
+        };
+
+        populateTable(reports);
+        populateDropdowns();
+    </script>
+</body>
 </html>
