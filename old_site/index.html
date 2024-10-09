@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #e0e0e0;
+            --primary-color: #16213e;
+            --secondary-color: #0f3460;
+            --accent-color: #e94560;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .container {
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        h1, h2 {
+            text-align: center;
+            color: var(--accent-color);
+        }
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--secondary-color);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--primary-color);
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid var(--secondary-color);
+            padding: 12px;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+        }
+        tr:nth-child(even) {
+            background-color: var(--primary-color);
+        }
+        tr:hover {
+            background-color: var(--secondary-color);
+        }
+        th:nth-child(1), td:nth-child(1) { width: 12%; }
+        th:nth-child(2), td:nth-child(2) { width: 12%; }
+        th:nth-child(3), td:nth-child(3) { width: 12%; }
+        th:nth-child(4), td:nth-child(4) { width: 16%; }
+        th:nth-child(5), td:nth-child(5) { width: 16%; }
+        th:nth-child(6), td:nth-child(6) { width: 20%; }
+        th:nth-child(7), td:nth-child(7) { width: 12%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reports Dashboard</h1>
+        <div class="navbar">
+            <button id="allReports">All Reports</button>
+            <div class="dropdown">
+                <button>Models▼</button>
+                <div class="dropdown-content" id="modelDropdown"></div>
+            </div>
+            <div class="dropdown">
+                <button>Task▼</button>
+                <div class="dropdown-content" id="taskDropdown"></div>
+            </div>
+            <div class="dropdown">
+                <button>Dataset▼</button>
+                <div class="dropdown-content" id="datasetDropdown"></div>
+            </div>
+            <div class="dropdown">
+                <button>Tags▼</button>
+                <div class="dropdown-content" id="tagDropdown"></div>
+            </div>
+            <button id="resetFilters">Reset Filters</button>
+        </div>
+        <h2 id="subtitle">Latest Reports</h2>
+        <table id="reportsTable">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Dataset</th>
+                    <th>Model</th>
+                    <th>Report</th>
+                    <th>Dashboard</th>
+                    <th>Github Link</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <a href="./old/index.html">(Temporary) Old Portfolio</a>
+    </div>
+
+    <script>
+        const reports = [
+            {task: 'Classification', dataset: 'Fraud', model: 'RFC', report: "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/fraud/final/analysis_final.pdf'>Link</a>", dashboard: 'N/A', github: "<a href='https://github.com/LukeDors/Tidy_Tuesday/tree/main/analyses/fraud'>Link</a>", date: '2024-06-28', tags: ['Imbalanced classification', 'Oversampling']},
+            {task: 'Recommender System', dataset: 'Anime Reviews', model: 'SVC', report: "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/anime_recs/final/collaborative.pdf'>Link</a>", dashboard: 'N/A', github: "<a href='https://github.com/LukeDors/Tidy_Tuesday/tree/main/analyses/anime_recs/final'>Link</a>", date: '2024-07-08', tags: ['SVC', 'Recommender System', 'Collaborative Filtering']},
+            {task: 'Recommender System', dataset: 'Anime Reviews', model: 'Cosine Similarity', report: "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/anime_recs/final/content.pdf'>Link</a>", dashboard: 'N/A', github: "<a href='https://github.com/LukeDors/Tidy_Tuesday/tree/main/analyses/anime_recs/final'>Link</a>", date: '2024-07-10', tags: ['Cosine Similarity', 'Recommender System', 'Content-based Filtering']},
+            {task: 'Clustering', dataset: 'IMDB', model: 'Kmeans', report: ("<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/tv_ratings/exploratory_analysis.ipynb'>Link</a>", "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/tv_ratings/directed_analysis.ipynb'>Link</a>"), dashboard: "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/2019/tv_ratings/report/imdb_dramas.pdf'>Link</a>", github: "<a href='https://github.com/LukeDors/Tidy_Tuesday/tree/main/2019/tv_ratings/report'>Link</a>", date: '2024-04-28', tags: ['Kmeans', 'Clustering']},
+            {task: 'Regression', dataset: 'AirBnb Prices', model: 'XGBoost Regressor', report: "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/airbnb/analysis/analysis.pdf'>Link</a>", dashboard: "N/A", github: "<a href='https://github.com/LukeDors/Tidy_Tuesday/tree/main/analyses/airbnb/analysis'>Link</a>", date: '2024-07-09', tags: ['XGBoost', 'Regression']},
+            {task: 'Regression', dataset: 'Used Car Prices', model: 'XGBoost Regressor', report: "<a href='https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/car_sales/analysis/analysis.pdf'>Link</a>", dashboard: "N/A", github: "<a href='https://github.com/LukeDors/Tidy_Tuesday/tree/main/analyses/car_sales/analysis'>Link</a>", date: '2024-07-10', tags: ['XGBoost', 'Regression']},
+        ];
+
+        // for (let i = 0; i < reports.length; i++) {
+        //     reports[i].report
+        // } 
+
+        function populateTable(data) {
+            const tableBody = document.querySelector('#reportsTable tbody');
+            tableBody.innerHTML = '';
+            data.forEach(report => {
+                const row = tableBody.insertRow();
+                Object.entries(report).forEach(([key, value]) => {
+                    if (key !== 'tags') {
+                        const cell = row.insertCell();
+                        cell.innerHTML = value;
+                        //cell.textContent = value;
+                        cell.title = value;
+                    }
+                });
+            });
+        }
+
+        function populateDropdowns() {
+            const models = [...new Set(reports.map(r => r.model))];
+            const tasks = [...new Set(reports.map(r => r.task))];
+            const datasets = [...new Set(reports.map(r => r.dataset))];
+            const tags = [...new Set(reports.flatMap(r => r.tags))];
+
+            populateDropdown('modelDropdown', models);
+            populateDropdown('taskDropdown', tasks);
+            populateDropdown('datasetDropdown', datasets);
+            populateDropdown('tagDropdown', tags);
+        }
+
+        function populateDropdown(id, items) {
+            const dropdown = document.getElementById(id);
+            dropdown.innerHTML = '';
+            items.forEach(item => {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = item;
+                a.onclick = () => filterReports(id, item);
+                dropdown.appendChild(a);
+            });
+        }
+
+        function filterReports(dropdownId, value) {
+            let filteredReports = reports;
+            if (dropdownId === 'modelDropdown') {
+                filteredReports = reports.filter(r => r.model === value);
+            } else if (dropdownId === 'taskDropdown') {
+                filteredReports = reports.filter(r => r.task === value);
+            } else if (dropdownId === 'datasetDropdown') {
+                filteredReports = reports.filter(r => r.dataset === value);
+            } else if (dropdownId === 'tagDropdown') {
+                filteredReports = reports.filter(r => r.tags.includes(value));
+            }
+            populateTable(filteredReports);
+            document.getElementById('subtitle').textContent = `Reports for ${value}`;
+        }
+
+        document.getElementById('allReports').onclick = () => {
+            populateTable(reports);
+            document.getElementById('subtitle').textContent = 'All Reports';
+        };
+
+        document.getElementById('resetFilters').onclick = () => {
+            populateTable(reports);
+            document.getElementById('subtitle').textContent = 'Latest Reports';
+        };
+
+        populateTable(reports);
+        populateDropdowns();
+    </script>
+</body>
+</html>
