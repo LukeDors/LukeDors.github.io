@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analytics Capstone</title>
+    <title>Global Women's Safety Dashboard</title>
     <style>
         :root {
             --bg-color: #1a1a1a;
@@ -138,39 +138,29 @@
     
     <main>
         <article class="project-content">
-            <h2>Data Analytics Capstone</h2>
-            <img src="img/capstone2.png" alt="Data Analytics Capstone" class="project-image">
+            <h2>Global Women's Safety Dashboard</h2>
+            <img src="img/womengeo.png" alt="Women Geo" class="project-image">
             
             <div class="project-meta">
-                <span>April 2024</span>
-                <span>Category: Data Analyses</span>
+                <span>January 2023</span>
+                <span>Category: Dashboards</span>
             </div>
             
             <div class="tech-stack">
-                <span class="tech-tag">Pandas</span>
-                <span class="tech-tag">Matplotlib</span>
-                <span class="tech-tag">Scikit-Learn</span>
-                <span class="tech-tag">Random Forest Regression</span>
+                <span class="tech-tag">D3.js</span>
             </div>
             
             <h3>Project Overview</h3>
             <p>
-                The project aimed to create a Random Forest Regressor model to predict Indian airline ticket prices using a dataset from Kaggle.com. The goal was to understand the factors contributing to price changes and provide insights for consumers and businesses.
+                This dashboard is a bivariate choropleth map, with the two metrics being HDI (Human Development Index, a metric of how developed a nation is based on a variety of factors) and a metric
+                created to evaluate nations by how well women's health is protected in the form of laws, protective systems, and data such as rates of assaults. This 
+                map then displays each country, color-coded by how the nation ranks within the two metrics mentioned, and shows how it compares to the average, as well as the rank compared to all nations.
             </p>
 
-            <h3>Project Flow</h3>
-            <ul>
-                <li>Data collection from Kaggle</li>
-                <li>Data cleaning, encoding categorical features</li>
-                <li>Evaluate distribution using Shapiro-Wilk test</li>
-                <li>Split data into train/test</li>
-                <li>Perform linear regression, removing non-significant features (p > 0.05)</li>
-                <li>Perform Bayesian Hyperparameter tuning</li>
-                <li>Evaluate models</li>
-            </ul>
+            <p>Due to changes in CORS policy, this may need to be run in Chrome to function correctly.</p>
             
             <div style="margin-top: 30px;">
-                <a href="https://github.com/LukeDors/flight_ticket_prediction/blob/main/report.pdf" class="button" style="margin-left: 10px;">GitHub Repository</a>
+                <a href="womengeo/index.html" class="button" style="margin-left: 10px;">Dashboard</a>
             </div>
         </article>
     </main>

@@ -121,6 +121,32 @@
             height: 24px;
             fill: var(--text-color);
         }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .project {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--secondary-bg);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .project:hover {
+            transform: translateY(-5px);
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .project-info {
+            padding: 15px;
+        }
+        .project-info h3 {
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
@@ -138,11 +164,11 @@
     
     <main>
         <article class="project-content">
-            <h2>Data Analytics Capstone</h2>
-            <img src="img/capstone2.png" alt="Data Analytics Capstone" class="project-image">
+            <h2>Tidy Tuesday Analyses</h2>
+            <img src="img/tt_logo.png" alt="Tidy Tuesday" class="project-image">
             
             <div class="project-meta">
-                <span>April 2024</span>
+                <span>April 2024-Present</span>
                 <span>Category: Data Analyses</span>
             </div>
             
@@ -150,28 +176,76 @@
                 <span class="tech-tag">Pandas</span>
                 <span class="tech-tag">Matplotlib</span>
                 <span class="tech-tag">Scikit-Learn</span>
-                <span class="tech-tag">Random Forest Regression</span>
+                <span class="tech-tag">Power BI</span>
+                <span class="tech-tag">Scikit-Learn</span>
+                <span class="tech-tag">Tableau</span>
+                <span class="tech-tag">Plotly</span>
+                <span class="tech-tag">XGBoost</span>
             </div>
             
             <h3>Project Overview</h3>
             <p>
-                The project aimed to create a Random Forest Regressor model to predict Indian airline ticket prices using a dataset from Kaggle.com. The goal was to understand the factors contributing to price changes and provide insights for consumers and businesses.
+                These are a collection of data analyses curated by the Data Science Learning Community (dslc.io). Click on an analysis below to go to its Github repo.
             </p>
 
             <h3>Project Flow</h3>
             <ul>
-                <li>Data collection from Kaggle</li>
-                <li>Data cleaning, encoding categorical features</li>
-                <li>Evaluate distribution using Shapiro-Wilk test</li>
-                <li>Split data into train/test</li>
-                <li>Perform linear regression, removing non-significant features (p > 0.05)</li>
-                <li>Perform Bayesian Hyperparameter tuning</li>
-                <li>Evaluate models</li>
+                <li>Decide on a research question</li>
+                <li>Clean data</li>
+                <li>Explore data using a variety of methods</li>
+                <li>Perform analyses on the dataset using various models</li>
+                <li>Visualize the results</li>
+                <li>If applicable, create a dashboard for findings</li>
             </ul>
             
-            <div style="margin-top: 30px;">
-                <a href="https://github.com/LukeDors/flight_ticket_prediction/blob/main/report.pdf" class="button" style="margin-left: 10px;">GitHub Repository</a>
-            </div>
+            <section id="projects">
+                <h2>Analyses</h2>
+                <div class="projects-grid">
+                    <div class="project">
+                        <img src="img/fraud.jpg" alt="Fraud Classification" class="project-image">
+                        <div class="project-info">
+                            <h3>Fraud Classification</h3>
+                            <p>Analysis of a credit card fraud dataset and prediction of fraudulent transactions</p>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/fraud/final/analysis_final.pdf">Report</a>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img/mal.png" alt="Anime Recommender System" class="project-image">
+                        <div class="project-info">
+                            <h3>Anime Recommender System</h3>
+                            <p>A content based filtering model and a collaborative filtering model for a MyAnimeList user dataset</p>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/anime_recs/final/content.pdf">Content-Based Report</a>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/anime_recs/final/collaborative.pdf">Collaborative-Based Report</a>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img/imdb.png" alt="IMDB Dramas Clustering" class="project-image">
+                        <div class="project-info">
+                            <h3>IMDB Dramas Clustering</h3>
+                            <p>Analysis of trends within a dataset of IMDB dramas, and a clustering analysis of types of dramas using KSmeans</p>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/tv_ratings/report/exploratory_analysis.pdf">Exploratory Analysis</a>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/tv_ratings/report/directed_analysis.pdf">Directed Analysis</a>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/tv_ratings/report/imdb_dramas.pdf">Dashboard</a>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img/airbnb.png" alt="AirBnb Prices" class="project-image">
+                        <div class="project-info">
+                            <h3>AirBnb Prices</h3>
+                            <p>AirBnb rental dataset analysis, and predictions of their prices</p>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/airbnb/analysis/analysis.pdf">Report</a>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img/cars.png" alt="Used Car Prices" class="project-image">
+                        <div class="project-info">
+                            <h3>Used Car Prices</h3>
+                            <p>Analysis of used car prices and predictions of their prices</p>
+                            <a href="https://github.com/LukeDors/Tidy_Tuesday/blob/main/analyses/car_sales/analysis/analysis.pdf">Report</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </article>
     </main>
     
